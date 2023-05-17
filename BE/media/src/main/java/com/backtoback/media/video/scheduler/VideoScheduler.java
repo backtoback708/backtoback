@@ -24,7 +24,7 @@ public class VideoScheduler {
 
 
 //    @Scheduled(cron = "0 0 0 * * *")
-//    public void midnightScheduler() {
+//    public void midnightScheduler() {`
 //        videoService.makeAllVideoRoom();
 //    }
 //
@@ -39,17 +39,17 @@ public class VideoScheduler {
 //    }
 
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 180000)
-    public void make() {
-        videoService.makeAllVideoRoom();
-    }
+//    @Scheduled(initialDelay = 10000, fixedDelay = 300000)
+//    public void make() {
+//        videoService.makeAllVideoRoom();
+//    }
 
-    @Scheduled(initialDelay = 40000, fixedDelay = 180000)
+    @Scheduled(initialDelay = 80000, fixedDelay = 300000)
     public void startGame() {
         videoService.startTodayGame();
     }
 
-    @Scheduled(initialDelay = 140000, fixedDelay = 180000)
+    @Scheduled(initialDelay = 180000, fixedDelay = 300000)
     public void makeHighLight() {
         HighLightMessageDto highLightMessageDto = new HighLightMessageDto();
         highLightMessageDto.setHighLightPositionList(new ArrayList<>());
