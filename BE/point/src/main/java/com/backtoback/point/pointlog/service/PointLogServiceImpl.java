@@ -55,7 +55,8 @@ public class PointLogServiceImpl implements PointLogService {
                     .num(number)
                     .point(log.getPoint())
                     .detail(log.getPointDetail().toString())
-                    .time(log.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+//                    .time(log.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                    .time("인생은 회전목마")
                     .build();
             pointLogs.add(res);
         }
