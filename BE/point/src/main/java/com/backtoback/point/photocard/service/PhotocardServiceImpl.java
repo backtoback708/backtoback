@@ -42,7 +42,7 @@ public class PhotocardServiceImpl implements PhotocardService{
     //  1. 경기 목록 조회
     @Override
     public List<GameTeamListResultRes> getGames(){
-        return gameService.getTeamListResult("2023-05-17 00:00:00");
+        return gameService.getTeamListResult("2023-05-18 00:00:00");
     }
 
     //  2. 멤버 포인트 조회
