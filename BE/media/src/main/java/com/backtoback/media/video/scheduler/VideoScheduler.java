@@ -41,11 +41,13 @@ public class VideoScheduler {
 
 //    @Scheduled(initialDelay = 10000, fixedDelay = 300000)
 //    public void make() {
+//    log.info("make!!!!");
 //        videoService.makeAllVideoRoom();
 //    }
 
     @Scheduled(initialDelay = 80000, fixedDelay = 300000)
     public void startGame() {
+        log.info("start TodayGame!!!!");
         videoService.startTodayGame();
     }
 
