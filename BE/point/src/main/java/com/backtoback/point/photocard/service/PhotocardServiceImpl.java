@@ -4,6 +4,7 @@ import com.backtoback.point.common.exception.business.EntityNotFoundException;
 import com.backtoback.point.member.domain.Member;
 import com.backtoback.point.myphotocard.domain.MyPhotoCard;
 import com.backtoback.point.photocard.domain.PhotoCard;
+import com.backtoback.point.photocard.dto.response.MyPhotocardResultRes;
 import com.backtoback.point.photocard.dto.response.PhotocardResultRes;
 import com.backtoback.point.photocard.repository.PhotocardRepository;
 import com.backtoback.point.game.domain.Game;
@@ -25,6 +26,7 @@ import java.util.List;
 import static com.backtoback.point.common.exception.ErrorCode.ENTITY_NOT_FOUND;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class PhotocardServiceImpl implements PhotocardService{
 
@@ -79,7 +81,6 @@ public class PhotocardServiceImpl implements PhotocardService{
 
     //  5. 포토카드 수량 차감
     @Override
-    @Transactional
     public void updatePhotocardQuantity(Long photocardSeq) {
         PhotoCard photocard = photocardRepository.findById(photocardSeq).orElseThrow(() -> new EntityNotFoundException(
                 "해당하는 카드가 존재하지 않습니다.", ENTITY_NOT_FOUND));
@@ -91,7 +92,6 @@ public class PhotocardServiceImpl implements PhotocardService{
 
     //  6. 유저 - 포토카드 등록
     @Override
-    @Transactional
     public void updateMyPhotocard(Long memberSeq, Long photocardSeq) {
 
         Member member = memberService.getMember(memberSeq);
@@ -104,5 +104,21 @@ public class PhotocardServiceImpl implements PhotocardService{
         myPhotoCard.setPhotoCard(photoCard);
 
         myphotocardService.createMyPhotocard(myPhotoCard);
+    }
+
+    //  7. 내 포토카드 조회
+    @Override
+    public List<MyPhotocardResultRes> getMyPhotocard(Long memberSeq) {
+
+        List<MyPhotoCard> myphotocards = myphotocardService.getMyPhotocardList(memberSeq);
+        List<MyPhotocardResultRes> MyPhotocardResultResList = new ArrayList<>();
+
+        for (MyPhotoCard myphotocard : myphotocards) {
+            MyPhotocardResultResList.add(MyPhotocardResultRes.builder()
+                    .photocardSeq(myphotocard.getPhotoCard().getPhotoCardSeq())
+                    .photocardUrl(myphotocard.getPhotoCard().getPhotoCardUrl())
+                    .build());
+        }
+        return MyPhotocardResultResList;
     }
 }
