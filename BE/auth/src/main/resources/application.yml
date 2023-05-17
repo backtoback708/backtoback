@@ -15,9 +15,10 @@ spring:
   application:
     name: auth
 
+
   data:
     redis:
-      host: localhost
+      host: k8a708.p.ssafy.io
       port: 6379
 
 
@@ -29,9 +30,11 @@ spring:
     # develop 브랜치 용
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://k8a708.p.ssafy.io:3306/backtoback?useUnicode=true&characterEncoding=utf-8
+#    url: jdbc:mariadb://localhost:3306/backtoback?useUnicode=true&characterEncoding=utf-8
     username: btob
-    #    password: ssafy
     password: backback
+#    username: root
+#    password: root
 
     hikari:
       pool-name: jpa-hikari-pool
@@ -50,7 +53,7 @@ spring:
         format_sql: true
     database: mysql
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
 
 eureka:
 #  instance:
@@ -60,7 +63,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://eureka:8761/eureka
-
+#      defaultZone: http://localhost:8761/eureka
 
 
 
