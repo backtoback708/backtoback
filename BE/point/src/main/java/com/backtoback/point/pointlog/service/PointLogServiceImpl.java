@@ -54,7 +54,7 @@ public class PointLogServiceImpl implements PointLogService {
                     .num(number)
                     .point(log.getPoint())
                     .detail(log.getPointDetail().toString())
-                    .time(log.getTime())
+                    .time(log.getTime().toString())
                     .build();
             pointLogs.add(res);
         }
