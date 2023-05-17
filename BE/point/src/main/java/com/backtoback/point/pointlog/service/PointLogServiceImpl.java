@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,8 @@ public class PointLogServiceImpl implements PointLogService {
                     .num(number)
                     .point(log.getPoint())
                     .detail(log.getPointDetail().toString())
-                    .time(log.getTime())
+//                    .time(log.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                    .time("인생은 회전목마")
                     .build();
             pointLogs.add(res);
         }

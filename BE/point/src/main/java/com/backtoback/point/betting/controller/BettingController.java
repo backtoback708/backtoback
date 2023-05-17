@@ -20,9 +20,9 @@ public class BettingController {
 
     @PostMapping("/start")
     @ApiOperation(value = "베팅을 위한 환경 설정", notes = "베팅을 시작하기 위해, Redis에 환경 설정")
-    public ResponseEntity<?> readyToStartBetting(){
+    public ResponseEntity<Void> readyToStartBetting(){
         bettingService.readyToStartBetting();
-        return ResponseEntity.status(200).body("Success");  // 변경 가능성 있음
+        return ResponseEntity.ok().build();
     } // OK
 
     @GetMapping("/member/{memberSeq}/info")

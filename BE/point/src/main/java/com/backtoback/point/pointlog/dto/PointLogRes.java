@@ -4,8 +4,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Builder
 @Getter
 public class PointLogRes {
@@ -20,5 +18,5 @@ public class PointLogRes {
     private String detail;
 
     @ApiModelProperty(name = "시간")
-    private LocalDateTime time;
+    private String time;
 }
