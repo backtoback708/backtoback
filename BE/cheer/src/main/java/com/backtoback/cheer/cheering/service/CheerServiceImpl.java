@@ -44,9 +44,9 @@ public class CheerServiceImpl implements CheerService{
             valueOperations.set(homeKey + ":count", 0);
             valueOperations.set(awayKey + ":count", 0);
 
-//            System.out.println("### readyToStartBetting ##############################################################");
-//            System.out.println(homeKey + ":count = " + valueOperations.get(homeKey + ":count"));
-//            System.out.println(awayKey + ":count = " + valueOperations.get(awayKey + ":count"));
+            System.out.println("### readyToStartBetting ##############################################################");
+            System.out.println(homeKey + ":count = " + valueOperations.get(homeKey + ":count"));
+            System.out.println(awayKey + ":count = " + valueOperations.get(awayKey + ":count"));
 
             // [Redis] 만료기한
             redisTemplate.expire(homeKey + ":count", 24, TimeUnit.HOURS);
