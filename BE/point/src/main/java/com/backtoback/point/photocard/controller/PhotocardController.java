@@ -1,6 +1,7 @@
 package com.backtoback.point.photocard.controller;
 
 import com.backtoback.point.game.dto.response.GameTeamListResultRes;
+import com.backtoback.point.photocard.dto.response.MyPhotocardResultRes;
 import com.backtoback.point.photocard.dto.response.PhotocardResultRes;
 import com.backtoback.point.photocard.service.PhotocardService;
 import io.swagger.annotations.Api;
@@ -66,5 +67,13 @@ public class PhotocardController {
     public ResponseEntity<?> updateMyPhotocard(@PathVariable("memberSeq") Long memberSeq, @PathVariable("photocardSeq") Long photocardSeq) {
         photocardService.updateMyPhotocard(memberSeq, photocardSeq);
         return ResponseEntity.status(200).body("Success");
+    }
+
+    //  7. 내 포토카드 조회
+    @GetMapping("photocard/getMyPhotocard/{memberSeq}")
+    @ApiOperation(value = "포토카드", notes = "내 포토카드 조회")
+    public ResponseEntity<?> getMyPhotocard(@PathVariable("memberSeq") Long memberSeq) {
+        List<MyPhotocardResultRes> response = photocardService.getMyPhotocard(memberSeq);
+        return ResponseEntity.status(200).body(response);
     }
 }
