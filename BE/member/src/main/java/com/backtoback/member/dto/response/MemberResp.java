@@ -19,6 +19,7 @@ public class MemberResp {
     private String nickname;
     private Integer point;
     private Integer betting_win;
+    private Long teamSeq;
     private String teamName;
 
     public static MemberResp fromEntity(Member member){
@@ -26,6 +27,7 @@ public class MemberResp {
                 .memberSeq(member.getMemberSeq())
                 .memberId(member.getMemberId())
                 .nickname(member.getNickname())
+                .teamSeq(member.getTeam().getTeamSeq())
                 .point(member.getPoint())
                 .teamName(member.getTeam().getTeamName())
                 .betting_win(member.getBettingWin())
