@@ -266,12 +266,13 @@ public class VideoServiceImpl implements VideoService {
 
     if(optionalRecord.isPresent()){
       Record record = optionalRecord.get();
+      log.info("delete record path"+record.getRecordPath());
       deleteFile(record.getRecordPath());
       recordRepository.deleteById(gameSeq.toString());
     }
 
     highLightRepository.findAll().forEach(highLight -> {
-      log.info("delete highlight");
+      log.info("delete highlight path"+highLight.getHighLightPath());
       if(highLight.getGameSeq().equals(gameSeq.toString())){
         deleteFile(highLight.getHighLightPath());
         highLightRepository.deleteById(gameSeq.toString());
