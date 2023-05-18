@@ -32,14 +32,14 @@ public class VideoKafkaConfig {
     @Bean
     public Consumer<HighLightMessageDto> highlight(){
         return message -> {
-            log.info("sdfdsf",message);
+            log.info("{}",message);
             try {
                 log.info("컨슈머 make highlight!!!!");
                 videoService.makeHighLight(message);
                 log.info("컨슈머 make sendHighligt!!!!");
                 videoService.sendHighLight(message.getGameSeq());
                 log.info("컨슈머 deleteHighLight!!!!");
-                videoService.deleteHighLight(message.getGameSeq());
+//                videoService.deleteHighLight(message.getGameSeq());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
