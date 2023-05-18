@@ -68,6 +68,7 @@ public class PhotocardServiceImpl implements PhotocardService{
                     .photocardSeq(photocard.getPhotoCardSeq())
                     .photocardUrl(photocard.getPhotoCardUrl())
                     .photocardQuantity(photocard.getQuantity())
+                    .htype(photocard.getHtype())
                     .build());
         }
         return PhotocardResultResList;
@@ -117,6 +118,7 @@ public class PhotocardServiceImpl implements PhotocardService{
             MyPhotocardResultResList.add(MyPhotocardResultRes.builder()
                     .photocardSeq(myphotocard.getPhotoCard().getPhotoCardSeq())
                     .photocardUrl(myphotocard.getPhotoCard().getPhotoCardUrl())
+                    .htype(myphotocard.getPhotoCard().getHtype())
                     .build());
         }
         return MyPhotocardResultResList;

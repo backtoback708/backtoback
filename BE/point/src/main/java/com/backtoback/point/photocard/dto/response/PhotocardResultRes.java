@@ -15,4 +15,7 @@ public class PhotocardResultRes {
 
     @ApiModelProperty(name = "포토카드 수량")
     private Integer photocardQuantity;
+
+    @ApiModelProperty(name = "하이라이트 유형")
+    private Integer htype;
 }
