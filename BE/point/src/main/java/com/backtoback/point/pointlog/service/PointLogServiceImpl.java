@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +48,14 @@ public class PointLogServiceImpl implements PointLogService {
     public List<PointLogRes> getPointLogs(Long memberSeq) {
         List<PointLog> logs = pointLogRepository.findByMemberMemberSeqOrderByPointLogSeqDesc(memberSeq);
         List<PointLogRes> pointLogs = new ArrayList<>();
+        Long number = 0L;
         for (PointLog log : logs) {
+            number++;
             PointLogRes res = PointLogRes.builder()
+                    .num(number)
                     .point(log.getPoint())
                     .detail(log.getPointDetail().toString())
-                    .time(log.getTime())
+                    .time(log.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                     .build();
             pointLogs.add(res);
         }

@@ -2,6 +2,7 @@ package com.backtoback.point.photocard.service;
 
 import com.backtoback.point.game.dto.response.GameTeamListResultRes;
 import com.backtoback.point.photocard.domain.PhotoCard;
+import com.backtoback.point.photocard.dto.response.MyPhotocardResultRes;
 import com.backtoback.point.photocard.dto.response.PhotocardResultRes;
 
 import java.util.List;
@@ -28,5 +29,8 @@ public interface PhotocardService {
 
     //  6. 유저 - 포토카드 등록
     void updateMyPhotocard(Long memberSeq, Long photocardSeq);
+
+    //  7. 내 포토카드 조회
+    List<MyPhotocardResultRes> getMyPhotocard(Long memberSeq);
 
 }
