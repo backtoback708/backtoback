@@ -20,6 +20,7 @@ spring:
     redis:
       host: k8a708.p.ssafy.io
       port: 6379
+      password: ssafy
 
 
   mvc:
