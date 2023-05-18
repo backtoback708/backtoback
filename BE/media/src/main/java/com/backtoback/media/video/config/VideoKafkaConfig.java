@@ -39,7 +39,7 @@ public class VideoKafkaConfig {
                 log.info("컨슈머 make sendHighligt!!!!");
                 videoService.sendHighLight(message.getGameSeq());
                 log.info("컨슈머 deleteHighLight!!!!");
-//                videoService.deleteHighLight(message.getGameSeq());
+                videoService.deleteHighLight(message.getGameSeq());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
