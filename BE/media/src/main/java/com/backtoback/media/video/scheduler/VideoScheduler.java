@@ -45,7 +45,7 @@ public class VideoScheduler {
 //        videoService.makeAllVideoRoom();
 //    }
 
-    @Scheduled(initialDelay = 80000, fixedDelay = 300000)
+    @Scheduled(initialDelay = 80000, fixedDelay = 500000)
     public void startGame() {
         log.info("start TodayGame!!!!");
         videoService.startTodayGame();
