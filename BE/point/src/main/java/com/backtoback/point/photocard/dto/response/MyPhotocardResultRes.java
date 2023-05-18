@@ -12,4 +12,7 @@ public class MyPhotocardResultRes {
 
     @ApiModelProperty(name = "포토카드 URL")
     private String photocardUrl;
+
+    @ApiModelProperty(name = "하이라이트 유형")
+    private Integer htype;
 }

@@ -39,6 +39,9 @@ public class PhotoCard implements Serializable {
     @ColumnDefault(value = "10")
     private Integer quantity;
 
+    @Column(name="htype")
+    private Integer htype;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_seq", nullable = false)
     private Game game;
