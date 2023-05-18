@@ -3,6 +3,7 @@ package com.backtoback.media.video.service;
 import com.backtoback.media.game.domain.Game;
 import com.backtoback.media.game.domain.GameActiveType;
 import com.backtoback.media.game.repository.GameRepository;
+import com.backtoback.media.game.service.GameService;
 import com.backtoback.media.video.domain.Participant;
 import com.backtoback.media.video.domain.Record;
 import com.backtoback.media.video.domain.VideoRoom;
@@ -58,7 +59,7 @@ public class VideoServiceImpl implements VideoService {
 
   private final VideoRoomRepository videoRoomRepository;
 
-  private final GameRepository gameRepository;
+  private final GameService gameService;
 
   private final ParticipantRepository participantRepository;
 
@@ -69,6 +70,7 @@ public class VideoServiceImpl implements VideoService {
   private final StreamBridge streamBridge;
 
   private final MpegService mpegService;
+
 
   // 방 접속
   @Override
@@ -138,16 +140,18 @@ public class VideoServiceImpl implements VideoService {
   }
 
   //경기 시작 kafka produce
+  @Transactional
   public void startGame(Long gameSeq) {
-
+    gameService.setGameActive(gameSeq,GameActiveType.IN_GAME);
     long mediaStartTime = startVideo(gameSeq);
     log.info("mediaStartTime 입니다"+mediaStartTime);
     streamBridge.send("producer-out-0", new MessageDto(gameSeq, GameActiveType.IN_GAME,mediaStartTime));
   }
 
   //경기 끝 kafka produce
+  @Transactional
   public void endGame(Long gameSeq) {
-
+    gameService.setGameActive(gameSeq,GameActiveType.AFTER_GAME);
     long mediaEndTime = System.currentTimeMillis();
     log.info("mediaEndTime 입니다"+mediaEndTime);
     streamBridge.send("producer-out-0", new MessageDto(gameSeq, GameActiveType.AFTER_GAME,mediaEndTime));
@@ -168,7 +172,7 @@ public class VideoServiceImpl implements VideoService {
   // 자정 지난 시점에 경기 생성
   @Override
   public void makeAllVideoRoom() {
-    List<Game> gameList = gameRepository.getAllTodayGame();
+    List<Game> gameList = gameService.getAllTodayGame();
     for (Game game : gameList) {
       makeVideoRoom(game.getGameSeq(), game.getGameUrl());
     }
@@ -194,6 +198,7 @@ public class VideoServiceImpl implements VideoService {
     videoRoom.setPlayerEndpointId(playerEndpoint.getId());
     videoRoom.setRecordEndpointId(recorderEndpoint.getId());
     videoRoomRepository.save(videoRoom);
+
 
     playerEndpoint.addErrorListener(new EventListener<ErrorEvent>() {
       @Override
