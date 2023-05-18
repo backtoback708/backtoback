@@ -24,9 +24,9 @@ public class CheerController {
 
     @PostMapping("start")
     @ApiOperation(value = "응원을 위한 환경 설정", notes = "응원을 시작하기 위해, Redis에 환경 설정")
-    public ResponseEntity<?> readyToStartCheer(){
+    public ResponseEntity<Void> readyToStartCheer(){
         cheerService.readyToStartCheer();
-        return ResponseEntity.status(200).body("Success");
+        return ResponseEntity.ok().build();
     } // OK
 
     @GetMapping("game/{gameSeq}")
