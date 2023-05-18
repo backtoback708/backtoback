@@ -14,7 +14,7 @@ import com.backtoback.point.member.service.MemberService;
 import com.backtoback.point.myphotocard.service.MyPhotoCardService;
 import com.backtoback.point.pointlog.service.PointLogService;
 import com.backtoback.point.team.service.TeamService;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +47,7 @@ public class PhotocardServiceImpl implements PhotocardService{
     //  1. 경기 목록 조회
     @Override
     public List<GameTeamListResultRes> getGames(){
-        return gameService.getTeamListResult(LocalDateTime.now(ZoneId.of("Asia/Seoul")).toString());
+        return gameService.getTeamListResult(LocalDate.now(ZoneId.of("Asia/Seoul")).toString());
     }
 
     //  2. 멤버 포인트 조회
