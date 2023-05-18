@@ -277,8 +277,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     highLightRepository.findAll().forEach(highLight -> {
-      log.info("delete highlight path"+highLight.getHighLightPath());
       if(highLight.getGameSeq().equals(gameSeq.toString())){
+        log.info("delete highlight path"+highLight.getHighLightPath());
         deleteFile(highLight.getHighLightPath());
         highLightRepository.deleteById(gameSeq.toString());
       }

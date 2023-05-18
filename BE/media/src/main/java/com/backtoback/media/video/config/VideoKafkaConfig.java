@@ -34,10 +34,12 @@ public class VideoKafkaConfig {
         return message -> {
             log.info("{}",message);
             try {
-                log.info("컨슈머 make highlight!!!!");
-                videoService.makeHighLight(message);
-                log.info("컨슈머 make sendHighligt!!!!");
-                videoService.sendHighLight(message.getGameSeq());
+                if(message.getHighLightPositionList().size()>0){
+                    log.info("컨슈머 make highlight!!!!");
+                    videoService.makeHighLight(message);
+                    log.info("컨슈머 make sendHighligth!!!!");
+                    videoService.sendHighLight(message.getGameSeq());
+                }
                 log.info("컨슈머 deleteHighLight!!!!");
                 videoService.deleteHighLight(message.getGameSeq());
             } catch (IOException e) {
