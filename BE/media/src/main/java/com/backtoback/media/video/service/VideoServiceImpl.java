@@ -131,12 +131,13 @@ public class VideoServiceImpl implements VideoService {
   //경기 시작
   @Override
   public void startTodayGame() {
-//    List<Game> gameList = gameRepository.getAllTodayGame();
-//
-//    for (Game game : gameList) {
-//      startGame(game.getGameSeq());
-//    }
-    startGame(2L);
+    log.info("startTodayGame");
+    List<Game> gameList = gameService.getAllTodayGame();
+
+    for (Game game : gameList) {
+      startGame(game.getGameSeq());
+    }
+
   }
 
   //경기 시작 kafka produce
