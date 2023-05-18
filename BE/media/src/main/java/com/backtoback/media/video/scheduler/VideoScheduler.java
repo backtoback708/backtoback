@@ -51,25 +51,25 @@ public class VideoScheduler {
         videoService.startTodayGame();
     }
 
-    @Scheduled(initialDelay = 180000, fixedDelay = 300000)
-    public void makeHighLight() {
-        HighLightMessageDto highLightMessageDto = new HighLightMessageDto();
-        highLightMessageDto.setHighLightPositionList(new ArrayList<>());
-        highLightMessageDto.setGameSeq(1L);
-        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(10,15));
-        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(20,25));
-        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(30,35));
-
-        try {
-          videoService.makeHighLight(highLightMessageDto);
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-
-        videoService.sendHighLight(1L);
-        videoService.deleteHighLight(1L);
-    }
+//    @Scheduled(initialDelay = 180000, fixedDelay = 300000)
+//    public void makeHighLight() {
+//        HighLightMessageDto highLightMessageDto = new HighLightMessageDto();
+//        highLightMessageDto.setHighLightPositionList(new ArrayList<>());
+//        highLightMessageDto.setGameSeq(1L);
+//        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(10,15));
+//        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(20,25));
+//        highLightMessageDto.getHighLightPositionList().add(new HighLightPosition(30,35));
+//
+//        try {
+//          videoService.makeHighLight(highLightMessageDto);
+//        } catch (IOException e) {
+//          throw new RuntimeException(e);
+//        } catch (InterruptedException e) {
+//          throw new RuntimeException(e);
+//        }
+//
+//        videoService.sendHighLight(1L);
+//        videoService.deleteHighLight(1L);
+//    }
 
 }
