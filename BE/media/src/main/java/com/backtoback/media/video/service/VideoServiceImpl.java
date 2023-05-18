@@ -140,7 +140,6 @@ public class VideoServiceImpl implements VideoService {
   }
 
   //경기 시작 kafka produce
-  @Transactional
   public void startGame(Long gameSeq) {
     gameService.setGameActive(gameSeq,GameActiveType.IN_GAME);
     long mediaStartTime = startVideo(gameSeq);
@@ -149,7 +148,6 @@ public class VideoServiceImpl implements VideoService {
   }
 
   //경기 끝 kafka produce
-  @Transactional
   public void endGame(Long gameSeq) {
     gameService.setGameActive(gameSeq,GameActiveType.AFTER_GAME);
     long mediaEndTime = System.currentTimeMillis();
