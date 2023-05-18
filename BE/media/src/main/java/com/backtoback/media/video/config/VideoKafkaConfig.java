@@ -32,6 +32,7 @@ public class VideoKafkaConfig {
     @Bean
     public Consumer<HighLightMessageDto> highlight(){
         return message -> {
+            log.info("sdfdsf",message);
             try {
                 log.info("컨슈머 make highlight!!!!");
                 videoService.makeHighLight(message);

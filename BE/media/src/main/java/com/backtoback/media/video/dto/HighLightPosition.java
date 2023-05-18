@@ -14,4 +14,12 @@ public class HighLightPosition implements Serializable {
     this.start = start;
     this.finish = finish;
   }
+
+  @Override
+  public String toString() {
+    return "HighLightPosition{" +
+            "start=" + start +
+            ", finish=" + finish +
+            '}';
+  }
 }
