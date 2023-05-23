@@ -75,6 +75,7 @@ public class VideoServiceImpl implements VideoService {
   // 방 접속
   @Override
   public void enterVideoRoom(StompHeaderAccessor stompHeaderAccessor, JsonObject jsonObject) {
+    log.info("비디오 룸 접속");
     String sessionId = stompHeaderAccessor.getSessionId();
     String gameId = jsonObject.get("gameId").getAsString();
     String userId = jsonObject.get("userId").getAsString();
@@ -336,21 +337,22 @@ public class VideoServiceImpl implements VideoService {
 
   @Override
   public void onIceCandidate(StompHeaderAccessor stompHeaderAccessor, JsonObject jsonObject) throws Exception {
+    log.info("아이스켄디데이트!!!");
     String sessionId = stompHeaderAccessor.getSessionId();
     JsonObject jsonCandidate = jsonObject.get("candidate").getAsJsonObject();
     WebRtcEndpoint webRtcEndpoint;
     Participant participant;
     Optional<Participant> participantOptional = participantRepository.findById(sessionId);
 
-    while (!participantOptional.isPresent() || participantOptional.get().getWebRtcEndpointId() == null) {
-      try {
-        log.info("쓸립!!!!!!!!!!");
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        throw new Exception("error occurred");
-      }
-      participantOptional = participantRepository.findById(sessionId);
-    }
+    // while (!participantOptional.isPresent() || participantOptional.get().getWebRtcEndpointId() == null) {
+    //   try {
+    //     log.info("쓸립!!!!!!!!!!");
+    //     Thread.sleep(1000);
+    //   } catch (InterruptedException e) {
+    //     throw new Exception("error occurred");
+    //   }
+    //   participantOptional = participantRepository.findById(sessionId);
+    // }
 
     participant = participantOptional.get();
     webRtcEndpoint = kurento.getById(participant.getWebRtcEndpointId(), WebRtcEndpoint.class);
