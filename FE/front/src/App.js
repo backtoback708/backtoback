@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import TheLayout from "./container";
 import Login from "./pages/Login";
@@ -27,6 +27,10 @@ function App() {
   //     </a>
   //   </header>
   // </div>
+
+  useEffect(() => {
+    document.title = "Back2Back";
+  }, []);
   return (
     <>
       <RecoilRoot>
