@@ -344,7 +344,7 @@ public class VideoServiceImpl implements VideoService {
 
     while (!participantOptional.isPresent() || participantOptional.get().getWebRtcEndpointId() == null) {
       try {
-        log.info("쓸립!!!!!!!!!!")
+        log.info("쓸립!!!!!!!!!!");
         Thread.sleep(1000);
       } catch (InterruptedException e) {
         throw new Exception("error occurred");
