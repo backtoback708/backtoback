@@ -39,6 +39,7 @@ public class MpegServiceImpl implements MpegService{
         String ffmpegPath = "/usr/bin/ffmpeg";
         String outputPath = "/highlight/"+ UUID.randomUUID().toString()+".mp4";
 
+        
         List<String> command = Arrays.asList(
                 ffmpegPath,
                 "-i", inputPath,
@@ -81,7 +82,7 @@ public class MpegServiceImpl implements MpegService{
         highLight.setGameSeq(gameSeq.toString());
         highLight.setHighLightPath(outputPath);
         highLightRepository.save(highLight);
-
+        log.info("create Highlight outputPath 입니다 {}",outputPath);
         return CompletableFuture.completedFuture(null);
     }
 
