@@ -33,20 +33,20 @@ public class VideoKafkaConfig {
     public Consumer<HighLightMessageDto> highlight(){
         return message -> {
             log.info("{}",message);
-            // try {
-            //     if(message.getHighLightPositionList().size()>0){
-            //         log.info("컨슈머 make highlight!!!!");
-            //         videoService.makeHighLight(message);
-            //         log.info("컨슈머 make sendHighligth!!!!");
-            //         videoService.sendHighLight(message.getGameSeq());
-            //     }
-            //     log.info("컨슈머 deleteHighLight!!!!");
-            //     videoService.deleteHighLight(message.getGameSeq());
-            // } catch (IOException e) {
-            //     throw new RuntimeException(e);
-            // } catch (InterruptedException e) {
-            //     throw new RuntimeException(e);
-            // }
+             try {
+                 if(message.getHighLightPositionList().size()>0){
+                     log.info("컨슈머 make highlight!!!!");
+                     videoService.makeHighLight(message);
+                     log.info("컨슈머 make sendHighlight!!!!");
+                     videoService.sendHighLight(message.getGameSeq());
+                 }
+                 log.info("컨슈머 deleteHighLight!!!!");
+                 videoService.deleteHighLight(message.getGameSeq());
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             } catch (InterruptedException e) {
+                 throw new RuntimeException(e);
+             }
         };
     }
 }

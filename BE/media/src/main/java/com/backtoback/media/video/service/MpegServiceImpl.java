@@ -68,7 +68,7 @@ public class MpegServiceImpl implements MpegService{
 
         String line;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            log.info(line);
         }
 
         process.getErrorStream().close();
@@ -84,7 +84,7 @@ public class MpegServiceImpl implements MpegService{
         highLight.setGameSeq(gameSeq.toString());
         highLight.setHighLightPath(outputPath);
         highLightRepository.save(highLight);
-        log.info("create Highlight outputPath 입니다 {}",outputPath);
+        log.info("create Highlight outputPath 입니다!!! {}",outputPath);
         return CompletableFuture.completedFuture(null);
     }
 

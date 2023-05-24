@@ -229,7 +229,6 @@ public class VideoServiceImpl implements VideoService {
     mediaPipeline.release();
     deleteParticipants(gameSeq);
     videoRoomRepository.deleteById(gameSeq.toString());
-
   }
 
   public void deleteFile(String filePath) {
@@ -257,7 +256,9 @@ public class VideoServiceImpl implements VideoService {
     try {
       for(CompletableFuture<Void> completableFuture:completableFutureList){
           completableFuture.get();
+          log.info("컴플리트 퓨처!!!");
       }
+      log.info("컴플리트 모두 완료");
     } catch (ExecutionException e) {
       throw new RuntimeException(e);
     }
@@ -281,7 +282,9 @@ public class VideoServiceImpl implements VideoService {
       if(highLight.getGameSeq().equals(gameSeq.toString())){
         log.info("delete highlight path"+highLight.getHighLightPath());
         deleteFile(highLight.getHighLightPath());
-        highLightRepository.deleteById(gameSeq.toString());
+        log.info("delete highLight ID!!! {}",highLight.getId());
+
+        highLightRepository.deleteById(highLight.getId());
       }
     });
   }
