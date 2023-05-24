@@ -44,6 +44,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 
+@Transactional
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -159,7 +160,7 @@ public class VideoServiceImpl implements VideoService {
 
   //비디오 시작
   public long startVideo(Long gameSeq) {
-
+    log.info("video 시작");
     VideoRoom videoRoom = videoRoomRepository.findById(gameSeq.toString()).orElseThrow();
     PlayerEndpoint playerEndpoint = kurento.getById(videoRoom.getPlayerEndpointId(), PlayerEndpoint.class);
     RecorderEndpoint recorderEndpoint = kurento.getById(videoRoom.getRecordEndpointId(),RecorderEndpoint.class);
@@ -172,6 +173,7 @@ public class VideoServiceImpl implements VideoService {
   // 자정 지난 시점에 경기 생성
   @Override
   public void makeAllVideoRoom() {
+    log.info("make All Video Room 합니다!!!");
     List<Game> gameList = gameService.getAllTodayGame();
     for (Game game : gameList) {
       makeVideoRoom(game.getGameSeq(), game.getGameUrl());
@@ -181,6 +183,7 @@ public class VideoServiceImpl implements VideoService {
   //비디오 방 만들기
   public void makeVideoRoom(Long gameSeq, String videoUrl) {
 //    final String RECORDER_FILE_PATH = "/tmp/" + UUID.randomUUID().toString() +".webm";
+    log.info("makeVideoRoom {}",gameSeq);
     final String RECORDER_FILE_PATH = "/record/" + UUID.randomUUID().toString() +".webm";
     VideoRoom videoRoom = new VideoRoom();
     MediaPipeline mediaPipeline = kurento.createMediaPipeline();
@@ -222,7 +225,10 @@ public class VideoServiceImpl implements VideoService {
   @Override
   public void closeVideoRoom(Long gameSeq) {
     log.info("비디오 room 삭제");
-    VideoRoom videoRoom = videoRoomRepository.findById(gameSeq.toString()).orElseThrow();
+    log.info("roomId: {}",String.valueOf(gameSeq));
+
+    VideoRoom videoRoom = videoRoomRepository.findById(String.valueOf(gameSeq)).orElseThrow();
+
     MediaPipeline mediaPipeline = kurento.getById(videoRoom.getMediaPipelineId(), MediaPipeline.class);
     RecorderEndpoint recorderEndpoint = kurento.getById(videoRoom.getRecordEndpointId(),RecorderEndpoint.class);
     recorderEndpoint.stop();

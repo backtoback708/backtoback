@@ -36,7 +36,7 @@ public class MpegServiceImpl implements MpegService{
     @Override
     public CompletableFuture<Void> createHighLight(Long gameSeq, double start, double end) throws InterruptedException, IOException {
 
-        Record record = recordRepository.findById(gameSeq.toString()).orElseThrow();
+        Record record = recordRepository.findById(String.valueOf(gameSeq)).orElseThrow();
         String inputPath = record.getRecordPath();
         String ffmpegPath = "/usr/bin/ffmpeg";
         String outputPath = "/highlight/"+ UUID.randomUUID().toString()+".mp4";

@@ -46,6 +46,9 @@ public class WebSocketEventListener {
     String userId = (String)((List) nativeHeaders.get("userId")).get(0);
     String sessionId = headerAccessor.getSessionId();
 
+    log.info("handle WebSocket Connection 입니다: gameSeq {}",gameSeq);
+    log.info("handle WebSocket Connection 입니다: userId {}",userId);
+    log.info("handle WebSocket Connection 입니다: sessionId {}",sessionId);
     VideoRoom videoRoom = videoRoomRepository.findById(gameSeq).orElseThrow();
 
     Participant participant = new Participant();
@@ -63,6 +66,7 @@ public class WebSocketEventListener {
     StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
     String sessionId = headerAccessor.getSessionId();
 
+    log.info("handle WebSocket DisConnection 입니다: gameSeq {}",sessionId);
     if(participantRepository.findById(sessionId).isPresent()){
       Participant participant = participantRepository.findById(sessionId).get();
       String webRtcEndpointId = participant.getWebRtcEndpointId();
