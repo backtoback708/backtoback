@@ -203,6 +203,7 @@ public class VideoServiceImpl implements VideoService {
     videoRoomRepository.save(videoRoom);
 
 
+
     playerEndpoint.addErrorListener(new EventListener<ErrorEvent>() {
       @Override
       public void onEvent(ErrorEvent event) {
@@ -227,6 +228,10 @@ public class VideoServiceImpl implements VideoService {
     log.info("비디오 room 삭제");
     log.info("roomId: {}",String.valueOf(gameSeq));
 
+    videoRoomRepository.findAll().forEach((videoRoom -> {
+      log.info("video Id {}",videoRoom.getId());
+      log.info(videoRoom.getMediaPipelineId());
+    }));
     VideoRoom videoRoom = videoRoomRepository.findById(String.valueOf(gameSeq)).orElseThrow();
 
     MediaPipeline mediaPipeline = kurento.getById(videoRoom.getMediaPipelineId(), MediaPipeline.class);
@@ -240,8 +245,11 @@ public class VideoServiceImpl implements VideoService {
   public void deleteFile(String filePath) {
     try {
       Path path = Paths.get(filePath);
-      Files.deleteIfExists(path);
-      log.info("파일이 성공적으로 삭제되었습니다.");
+      if(Files.deleteIfExists(path)){
+        log.info("파일이 성공적으로 삭제되었습니다.{}", filePath);
+      }
+      log.info("파일 삭제 중 오류가 발생하였습니다: {} ", filePath);
+
     } catch (IOException e) {
       log.info("파일 삭제 중 오류가 발생하였습니다: " + e.getMessage());
       throw new RuntimeException();
