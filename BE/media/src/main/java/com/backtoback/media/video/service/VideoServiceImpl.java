@@ -248,7 +248,10 @@ public class VideoServiceImpl implements VideoService {
       if(Files.deleteIfExists(path)){
         log.info("파일이 성공적으로 삭제되었습니다.{}", filePath);
       }
-      log.info("파일 삭제 중 오류가 발생하였습니다: {} ", filePath);
+      else{
+        log.info("파일 삭제 중 오류가 발생하였습니다: {} ", filePath);
+      }
+
 
     } catch (IOException e) {
       log.info("파일 삭제 중 오류가 발생하였습니다: " + e.getMessage());
