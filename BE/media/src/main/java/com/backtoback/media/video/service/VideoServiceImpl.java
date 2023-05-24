@@ -194,6 +194,8 @@ public class VideoServiceImpl implements VideoService {
     Record record = new Record();
     record.setId(gameSeq.toString());
     record.setRecordPath(RECORDER_FILE_PATH);
+    log.info("record saving start!!!!! {}",record.getId());
+    log.info("record saving record path start!!!!! {}",RECORDER_FILE_PATH);
     recordRepository.save(record);
 
     videoRoom.setId(gameSeq.toString());
