@@ -27,7 +27,7 @@ const Profile = ({ cards }) => {
 
   const winRate =
     !isNaN(curBettingWin) && !isNaN(curBettingTotal) && curBettingWin !== 0
-      ? (curBettingTotal / curBettingWin) * 100
+      ? (curBettingWin / curBettingTotal) * 100
       : 0;
   const [infos, setInfos] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
