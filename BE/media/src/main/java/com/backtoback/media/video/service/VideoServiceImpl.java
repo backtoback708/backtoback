@@ -44,7 +44,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 
-@Transactional
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -230,18 +230,26 @@ public class VideoServiceImpl implements VideoService {
     log.info("비디오 room 삭제");
     log.info("roomId: {}",String.valueOf(gameSeq));
 
-    videoRoomRepository.findAll().forEach((videoRoom -> {
-      log.info("video Id {}",videoRoom.getId());
-      log.info(videoRoom.getMediaPipelineId());
-    }));
-    VideoRoom videoRoom = videoRoomRepository.findById(String.valueOf(gameSeq)).orElseThrow();
+//    videoRoomRepository.findAll().forEach((videoRoom -> {
+//      log.info("video Id {}",videoRoom.getId());
+//      log.info(videoRoom.getMediaPipelineId());
+//    }));
+    VideoRoom videoRoom = null;
+    try{
+      videoRoom = videoRoomRepository.findById(String.valueOf(gameSeq)).orElseThrow();
+      MediaPipeline mediaPipeline = kurento.getById(videoRoom.getMediaPipelineId(), MediaPipeline.class);
+      RecorderEndpoint recorderEndpoint = kurento.getById(videoRoom.getRecordEndpointId(),RecorderEndpoint.class);
+      recorderEndpoint.stop();
+      mediaPipeline.release();
+      deleteParticipants(gameSeq);
+      videoRoomRepository.deleteById(gameSeq.toString());
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
 
-    MediaPipeline mediaPipeline = kurento.getById(videoRoom.getMediaPipelineId(), MediaPipeline.class);
-    RecorderEndpoint recorderEndpoint = kurento.getById(videoRoom.getRecordEndpointId(),RecorderEndpoint.class);
-    recorderEndpoint.stop();
-    mediaPipeline.release();
-    deleteParticipants(gameSeq);
-    videoRoomRepository.deleteById(gameSeq.toString());
+
+
   }
 
   public void deleteFile(String filePath) {
