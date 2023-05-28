@@ -351,6 +351,7 @@ public class VideoServiceImpl implements VideoService {
   public void deleteParticipants(Long gameSeq) {
 
     participantRepository.findAll().forEach((participant -> {
+      log.info("delete participant start{}",participant.getId());
       if (participant.getGameSeq().equals(gameSeq.toString())) {
         sendPlayEnd(gameSeq.toString(),participant.getUserId());
         participantRepository.deleteById(participant.getId());
