@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@FeignClient(name = "flask-service", url = "http://k8a7081.p.ssafy.io:5000")
+@FeignClient(name = "flask-service", url = "http://k8a708.p.ssafy.io:5000")
 public interface FlaskServiceClient {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
