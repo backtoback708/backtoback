@@ -76,7 +76,7 @@ public class VideoServiceImpl implements VideoService {
   // 방 접속
   @Override
   public void enterVideoRoom(StompHeaderAccessor stompHeaderAccessor, JsonObject jsonObject) {
-    log.info("비디오 룸 접속");
+    log.info("enterVideoRoom 메소드 시작");
     String sessionId = stompHeaderAccessor.getSessionId();
     String gameId = jsonObject.get("gameId").getAsString();
     String userId = jsonObject.get("userId").getAsString();
@@ -144,6 +144,7 @@ public class VideoServiceImpl implements VideoService {
 
   //경기 시작 kafka produce
   public void startGame(Long gameSeq) {
+    log.info("startGame 메소드 시작");
     gameService.setGameActive(gameSeq,GameActiveType.IN_GAME);
     long mediaStartTime = startVideo(gameSeq);
     log.info("mediaStartTime 입니다"+mediaStartTime);
@@ -152,10 +153,17 @@ public class VideoServiceImpl implements VideoService {
 
   //경기 끝 kafka produce
   public void endGame(Long gameSeq) {
+    log.info("endGame 메소드 시작");
     gameService.setGameActive(gameSeq,GameActiveType.AFTER_GAME);
     long mediaEndTime = System.currentTimeMillis();
     log.info("mediaEndTime 입니다"+mediaEndTime);
-    streamBridge.send("producer-out-0", new MessageDto(gameSeq, GameActiveType.AFTER_GAME,mediaEndTime));
+    try{
+      streamBridge.send("producer-out-0", new MessageDto(gameSeq, GameActiveType.AFTER_GAME,mediaEndTime));
+    }
+    catch (Exception e){
+      e.printStackTrace();
+    }
+
   }
 
   //비디오 시작
@@ -173,7 +181,7 @@ public class VideoServiceImpl implements VideoService {
   // 자정 지난 시점에 경기 생성
   @Override
   public void makeAllVideoRoom() {
-    log.info("make All Video Room 합니다!!!");
+    log.info("make All Video Room 실행");
     List<Game> gameList = gameService.getAllTodayGame();
     for (Game game : gameList) {
       makeVideoRoom(game.getGameSeq(), game.getGameUrl());
@@ -183,7 +191,7 @@ public class VideoServiceImpl implements VideoService {
   //비디오 방 만들기
   public void makeVideoRoom(Long gameSeq, String videoUrl) {
 //    final String RECORDER_FILE_PATH = "/tmp/" + UUID.randomUUID().toString() +".webm";
-    log.info("makeVideoRoom {}",gameSeq);
+    log.info("makeVideoRoom 메소드 시작 {}",gameSeq);
     final String RECORDER_FILE_PATH = "/record/" + UUID.randomUUID().toString() +".webm";
     VideoRoom videoRoom = new VideoRoom();
     MediaPipeline mediaPipeline = kurento.createMediaPipeline();
@@ -205,7 +213,7 @@ public class VideoServiceImpl implements VideoService {
     videoRoomRepository.save(videoRoom);
 
 
-
+    log.info("player endpoint 연결 설정");
     playerEndpoint.addErrorListener(new EventListener<ErrorEvent>() {
       @Override
       public void onEvent(ErrorEvent event) {
@@ -227,7 +235,7 @@ public class VideoServiceImpl implements VideoService {
   //비디오 방 삭제
   @Override
   public void closeVideoRoom(Long gameSeq) {
-    log.info("비디오 room 삭제");
+    log.info("closeVideoRoom 메소드 시작");
     log.info("roomId: {}",String.valueOf(gameSeq));
 
 //    videoRoomRepository.findAll().forEach((videoRoom -> {
@@ -271,7 +279,7 @@ public class VideoServiceImpl implements VideoService {
 
   @Override
   public void makeHighLight(HighLightMessageDto highLightMessageDto) throws IOException, InterruptedException {
-    log.info("make highlight");
+    log.info("makehighlight 메소드 시작");
     List<HighLightPosition> highLightPositionList = highLightMessageDto.getHighLightPositionList();
     List<CompletableFuture<Void>> completableFutureList = new ArrayList<>();
 
@@ -294,22 +302,22 @@ public class VideoServiceImpl implements VideoService {
 
   @Override
   public void deleteHighLight(Long gameSeq){
-    log.info("delete record");
+    log.info("녹화 파일 삭제 메소드 시작");
 
     Optional<Record> optionalRecord = recordRepository.findById(gameSeq.toString());
 
     if(optionalRecord.isPresent()){
       Record record = optionalRecord.get();
-      log.info("delete record path"+record.getRecordPath());
+      log.info("녹화 파일 존재 시 삭제 시작: {}",record.getRecordPath());
       deleteFile(record.getRecordPath());
       recordRepository.deleteById(gameSeq.toString());
     }
 
     highLightRepository.findAll().forEach(highLight -> {
       if(highLight.getGameSeq().equals(gameSeq.toString())){
-        log.info("delete highlight path"+highLight.getHighLightPath());
+        log.info("delete highlight path {}",highLight.getHighLightPath());
         deleteFile(highLight.getHighLightPath());
-        log.info("delete highLight ID!!! {}",highLight.getId());
+        log.info("delete highlight ID!!! {}",highLight.getId());
 
         highLightRepository.deleteById(highLight.getId());
       }
@@ -349,9 +357,9 @@ public class VideoServiceImpl implements VideoService {
   }
 
   public void deleteParticipants(Long gameSeq) {
-
+    log.info("delete participants 메소드 시작");
     participantRepository.findAll().forEach((participant -> {
-      log.info("delete participant start{}",participant.getId());
+      log.info("custom: delete participant start {}",participant.getId());
       if (participant.getGameSeq().equals(gameSeq.toString())) {
         sendPlayEnd(gameSeq.toString(),participant.getUserId());
         participantRepository.deleteById(participant.getId());
@@ -361,6 +369,7 @@ public class VideoServiceImpl implements VideoService {
   }
 
   public void sendPlayEnd(String gameId,String userId){
+    log.info("sendPlayEnd 메소드 시작");
     JsonObject response = new JsonObject();
     response.addProperty("id", "playEnd");
     sendStompMessage(gameId, userId, response.toString());
@@ -374,16 +383,6 @@ public class VideoServiceImpl implements VideoService {
     WebRtcEndpoint webRtcEndpoint;
     Participant participant;
     Optional<Participant> participantOptional = participantRepository.findById(sessionId);
-
-    // while (!participantOptional.isPresent() || participantOptional.get().getWebRtcEndpointId() == null) {
-    //   try {
-    //     log.info("쓸립!!!!!!!!!!");
-    //     Thread.sleep(1000);
-    //   } catch (InterruptedException e) {
-    //     throw new Exception("error occurred");
-    //   }
-    //   participantOptional = participantRepository.findById(sessionId);
-    // }
 
     participant = participantOptional.get();
     webRtcEndpoint = kurento.getById(participant.getWebRtcEndpointId(), WebRtcEndpoint.class);
