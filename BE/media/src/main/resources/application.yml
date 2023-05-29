@@ -65,16 +65,7 @@ spring:
       maxFileSize: -1
       max-request-size: -1
 logging.level:
-  org.hibernate.SQL: debug
-  org.hibernate.type: trace
-  org:
-    springframework:
-      security: trace
-      boot:
-        autoconfigure:
-          security: trace
-      web: trace
-      http: trace
+  root: info
 
 sock:
   url: ws://k8a708.p.ssafy.io:8888/kurento
