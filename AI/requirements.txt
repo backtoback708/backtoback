@@ -1,0 +1,11 @@
+keras
+tensorflow
+Flask
+Flask_cors
+numpy
+virtualenv
+opencv-python
+boto3
+flask-sqlalchemy
+PyMySQL
+moviepy
