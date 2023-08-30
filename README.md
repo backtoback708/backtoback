@@ -1,9 +1,7 @@
 <img src="./Document/로고.png" />
 
+
 # 서비스 소개
-
-
-
 ### KBO 시장 주 고객인 MZ 세대를 타겟팅
 
 - KBO 리그 실시간 스트리밍 중계 (저작권 문제로 영상으로 대체하여 구현)
@@ -17,10 +15,8 @@
 
 
 
+
 # 기술스택
-
-
-
 ### Backend
 
 - SpringBoot 2.7.11
@@ -60,21 +56,12 @@
 - Mattermost
 
 # 아키텍처
-
-
-
 <img src="./Document/아키텍처 설계 ver 4.0.png" />
 
 # ERD
-
-
-
 <img src="./Document/erd.png" />
 
 # 주요 기능
-
-
-
 ## 실시간 스트리밍
 
 ### 📺 **라이브 중계**
@@ -88,25 +75,25 @@
 
       예상 승리팀에 포인트를 베팅하고, 경기 결과에 따라 배당금을 지급받는 Restful API 개발
 
-<img src="./Document/베팅.png" />
+<img src="./Document/베팅.gif" />
 
-<img src="./Document/배당금.png" />
+<img src="./Document/배당금.gif" />
 
 
 ### 🥁 **응원**
 
       Websocket을 사용하여 원하는 팀을 클릭하여 응원하는 서비스 구현
 
-<img src="./Document/응원.png" />
+<img src="./Document/응원.gif" />
 
  
 ### 💌 **채팅**
 
        STOMP(Websocket), Kafka를 사용하여 전체 채팅 / 마이팀 채팅 구현
 
-<img src="./Document/마이팀채팅.png" />
+<img src="./Document/마이팀채팅.gif" />
 
-<img src="./Document/전체채팅.png" />
+<img src="./Document/전체채팅.gif" />
 
 
 ## 하이라이트 포토카드
@@ -119,9 +106,9 @@
 
        유저의 포인트를 차감하여 카드를 구매하는 Restful API 개발
 
-<img src="./Document/포토카드구매.png" />
+<img src="./Document/포토카드구매.gif" />
 
-<img src="./Document/마이페이지.png" />
+<img src="./Document/마이페이지.gif" />
 
 
 # 팀원 소개
