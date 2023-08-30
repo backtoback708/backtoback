@@ -15,7 +15,7 @@
 <br/><br/>
 
 # 기술스택
-<img src="./Document/기술스택.png" />
+<img src="./Document/기술스택2.png" />
 
 <br/><br/>
 
