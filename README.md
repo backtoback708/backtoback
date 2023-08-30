@@ -1,4 +1,4 @@
-<img src="~@Document/로고.png" />
+<img src="./Document/로고.png" />
 
 # 서비스 소개
 
@@ -63,13 +63,13 @@
 
 
 
-<img src="~@Document/아키텍처 설계 ver 4.0.png" />
+<img src="./Document/아키텍처 설계 ver 4.0.png" />
 
 # ERD
 
 
 
-<img src="~@Document/erd.png" />
+<img src="./Document/erd.png" />
 
 # 주요 기능
 
@@ -81,32 +81,32 @@
 
       Kurento Media Server를 사용하여 비디오 스트리밍 환경 구축
 
-<img src="~@Document/실시간전체.png" />
+<img src="./Document/실시간전체.png" />
 
 
 ### 💵 **포인트 베팅**
 
       예상 승리팀에 포인트를 베팅하고, 경기 결과에 따라 배당금을 지급받는 Restful API 개발
 
-<img src="~@Document/베팅.png" />
+<img src="./Document/베팅.png" />
 
-<img src="~@Document/배당금.png" />
+<img src="./Document/배당금.png" />
 
 
 ### 🥁 **응원**
 
       Websocket을 사용하여 원하는 팀을 클릭하여 응원하는 서비스 구현
 
-<img src="~@Document/응원.png" />
+<img src="./Document/응원.png" />
 
  
 ### 💌 **채팅**
 
        STOMP(Websocket), Kafka를 사용하여 전체 채팅 / 마이팀 채팅 구현
 
-<img src="~@Document/마이팀채팅.png" />
+<img src="./Document/마이팀채팅.png" />
 
-<img src="~@Document/전체채팅.png" />
+<img src="./Document/전체채팅.png" />
 
 
 ## 하이라이트 포토카드
@@ -119,11 +119,13 @@
 
        유저의 포인트를 차감하여 카드를 구매하는 Restful API 개발
 
-<img src="~@Document/포토카드구매.png" />
+<img src="./Document/포토카드구매.png" />
 
-<img src="~@Document/마이페이지.png" />
+<img src="./Document/마이페이지.png" />
 
 
 # 팀원 소개
 
-<img src="~@Document/팀원소개.png" />
+<img src="./Document/팀원소개.png" />
+
+
