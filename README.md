@@ -15,39 +15,7 @@
 <br/><br/>
 
 # 기술스택
-### Backend
-- SpringBoot 2.7.11
-- Spring Cloud Gateway
-- Spring Cloud Netflix
-- Spring Security
-- JWT
-- Spring Data JPA
-- QueryDSL 5.0
-- Spring Batch
-- Zookeeper
-- Kafka
-- Flask
-- Nginx
-- Kurento
-
-### Frontend
-- React
-- Recoil
-- Prime React
-
-### Infra
-- Jenkins
-- Docker
-
-### Database
-- Maria DB
-- Redis
-
-
-### Management
-- Jira
-- Notion
-- Mattermost
+<img src="./Document/기술스택.png" />
 
 <br/><br/>
 
