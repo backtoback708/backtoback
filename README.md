@@ -44,9 +44,9 @@
 
       예상 승리팀에 포인트를 베팅하고, 경기 결과에 따라 배당금을 지급받는 Restful API 개발
 
-<img src="./Document/베팅.gif" height="250" width="600"/>
+<img src="./Document/베팅.gif" height="220" width="600"/>
 
-<img src="./Document/배당금.gif" height="250" width="600"/>
+<img src="./Document/배당금.gif" height="220" width="600"/>
 
 <br/>
 
@@ -62,9 +62,9 @@
 
        STOMP(Websocket), Kafka를 사용하여 전체 채팅 / 마이팀 채팅 구현
 
-<img src="./Document/마이팀채팅.gif" height="400" width="700"/>
-
 <img src="./Document/전체채팅.gif" height="400" width="700"/>
+
+<img src="./Document/마이팀채팅.gif" height="400" width="700"/>
 
 <br/>
 
