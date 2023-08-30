@@ -1,5 +1,7 @@
 <img src="./Document/로고.png" />
+
 <br/><br/>
+
 # 서비스 소개
 ### KBO 시장 주 고객인 MZ 세대를 타겟팅
 - KBO 리그 실시간 스트리밍 중계 (저작권 문제로 영상으로 대체하여 구현)
@@ -11,6 +13,7 @@
 - 응원 : 경기를 시청하며 팬들 간 경쟁적 요소 도입
 
 <br/><br/>
+
 # 기술스택
 ### Backend
 - SpringBoot 2.7.11
@@ -27,44 +30,37 @@
 - Nginx
 - Kurento
 
-<br/>
-
 ### Frontend
 - React
 - Recoil
 - Prime React
 
-<br/>
-
 ### Infra
-
 - Jenkins
 - Docker
 
-<br/>
-
 ### Database
-
 - Maria DB
 - Redis
 
-<br/>
 
 ### Management
-
 - Jira
 - Notion
 - Mattermost
 
 <br/><br/>
+
 # 아키텍처
 <img src="./Document/아키텍처 설계 ver 4.0.png" />
 
 <br/><br/>
+
 # ERD
 <img src="./Document/erd.png" />
 
 <br/><br/>
+
 # 주요 기능
 ## 실시간 스트리밍
 
@@ -73,6 +69,7 @@
       Kurento Media Server를 사용하여 비디오 스트리밍 환경 구축
 
 <img src="./Document/실시간전체.png" />
+
 <br/>
 
 ### 💵 **포인트 베팅**
@@ -82,6 +79,7 @@
 <img src="./Document/베팅.gif" />
 
 <img src="./Document/배당금.gif" />
+
 <br/>
 
 ### 🥁 **응원**
@@ -89,6 +87,7 @@
       Websocket을 사용하여 원하는 팀을 클릭하여 응원하는 서비스 구현
 
 <img src="./Document/응원.gif" />
+
 <br/>
  
 ### 💌 **채팅**
@@ -100,12 +99,15 @@
 <img src="./Document/전체채팅.gif" />
 
 <br/>
+
 ## 하이라이트 포토카드
 
 ### ✨ **하이라이트 생성**
 
        채팅 데이터 추이를 분석하여 하이라이트 시간대 추출 → 비디오를 .GIF로 변환
+
 <br/>
+
 ### 🖼️ **포토카드 구매**
 
        유저의 포인트를 차감하여 카드를 구매하는 Restful API 개발
@@ -115,6 +117,7 @@
 <img src="./Document/마이페이지.gif" />
 
 <br/><br/>
+
 # 팀원 소개
 
 <img src="./Document/팀원소개.png" />
