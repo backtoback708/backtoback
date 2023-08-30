@@ -68,7 +68,7 @@
 
       Kurento Media Server를 사용하여 비디오 스트리밍 환경 구축
 
-<img src="./Document/실시간전체.png" height="450" width="550"/>
+<img src="./Document/실시간전체.png" height="450" width="600"/>
 
 <br/>
 
